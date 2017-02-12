@@ -1,5 +1,22 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .container 
+    .row
+      .col-md-offset-3.col-md-6
+        h1.text-center.font-effect-outline Coffee Hop!
+        .panel.panel-default
+          .panel.panel-body
+            p Find out what coffee shops are hopping today. RSVP for the shops you are going to and check to see how many other people are going.
+            .input-group
+              form(action='/', method='GET')
+                input.form-control#location(type='text', name='location', placeholder=location)
+                span.input-group-btn
+                  button.btn.btn-default#submit(type='submit') Submit
+        if searchResults
+          each result in searchResults
+            .panel.panel-default
+              .panel-heading
+                h3.panel-title #{result.name}
+              .panel-body
+                =result.snippet
