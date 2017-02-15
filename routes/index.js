@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
                 })
             };
             
-            res.render('index', { searchResults: searchResults, location: req.query.location });
+            res.render('index', { searchResults: searchResults, location: req.query.location, logged: req.isAuthenticated() });
           })
           .catch(function (err) {
             console.error(err);

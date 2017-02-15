@@ -6,19 +6,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session')
 var passport = require('passport');
-var config = require('./oauth.js');
+var config = require('./_config.js');
 var TwitterStrategy = require('passport-twitter').Strategy;
+var mongoose = require('mongoose');
+var User = require('./models/user');
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-// serialize and deserialize user
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
+// *** mongoose *** //
+mongoose.connect('mongodb://localhost/passport-social-auth');
 
 // config Twitter auth
 passport.use(new TwitterStrategy({
@@ -47,9 +45,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'my_precious' }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(session({
+ secret: 'keyboard cat',
+ resave: true,
+ saveUninitialized: true
+}));
+
 
 app.use('/', index);
 app.use('/users', users);
