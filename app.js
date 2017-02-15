@@ -17,7 +17,7 @@ var users = require('./routes/users');
 
 // *** mongoose *** //
 var url = process.env.MONGOLAB_URI;
-mongoose.connect(url + '/passport-social-auth');
+mongoose.connect(url);
 
 // config Twitter auth
 passport.use(new TwitterStrategy({
