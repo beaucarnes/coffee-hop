@@ -38,7 +38,7 @@ passport.use(new TwitterStrategy({
 ));
 
 // serialize user into the session
-init();
+//init();
 
 
 module.exports = passport;
