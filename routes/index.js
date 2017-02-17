@@ -13,6 +13,7 @@ var yelp = new Yelp({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  console.log("getting home:" + req.isAuthenticated())
     var searchResults = [];
     if (req.query.location) {
       yelp.search({ term: 'coffee', location: req.query.location })

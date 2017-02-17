@@ -16,8 +16,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 // *** mongoose *** //
-var url = process.env.MONGOLAB_URI;
-mongoose.connect('mongodb://heroku_b0jrwff1:1rkuvop5kpimvvnpr1ckhpf4sl@ds153729.mlab.com:53729/heroku_b0jrwff1');
+var url = process.env.MONGODB_URI;
+mongoose.connect(url);
 
 console.log(url)
 
@@ -107,8 +107,12 @@ app.use(function(err, req, res, next) {
 
 // test authentication
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
+  if (req.isAuthenticated()) { 
+    return next(); 
+    
+  } else {
   res.redirect('/');
+  }
 }
 
 module.exports = app;
