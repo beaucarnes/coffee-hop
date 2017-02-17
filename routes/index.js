@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
             res.render('index', { searchResults: searchResults });
           });
     } else {
-      res.render('index', { searchResults: null, location: "Where are you?" });
+      res.render('index', { searchResults: null, location: "Where are you?", logged: req.isAuthenticated() });
     };
 
   
