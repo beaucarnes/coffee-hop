@@ -6,10 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session')
 var passport = require('passport');
+var passportTwitter = require('../auth/twitter');
 var config = require('./_config.js');
 var TwitterStrategy = require('passport-twitter').Strategy;
 var mongoose = require('mongoose');
 var User = require('./models/user');
+
 
 
 var index = require('./routes/index');
@@ -18,22 +20,6 @@ var users = require('./routes/users');
 // *** mongoose *** //
 var url = process.env.MONGODB_URI;
 mongoose.connect(url);
-
-console.log(url)
-
-// config Twitter auth
-passport.use(new TwitterStrategy({
-  consumerKey: config.twitter.consumerKey,
-  consumerSecret: config.twitter.consumerSecret,
-  callbackURL: config.twitter.callbackURL
-},
-function(accessToken, refreshToken, profile, done) {
-  process.nextTick(function () {
-    return done(null, profile);
-  });
-}
-));
-
 
 var app = express();
 
@@ -72,14 +58,14 @@ app.use('/users', users);
 app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user });
 });
-app.get('/auth/twitter',
-  passport.authenticate('twitter'),
-  function(req, res){});
+
+app.get('/auth/twitter', passportTwitter.authenticate('twitter'));
+
 app.get('/auth/twitter/callback',
-  passport.authenticate('twitter', { failureRedirect: '/users' }),
+  passportTwitter.authenticate('twitter', { failureRedirect: '/login' }),
   function(req, res) {
-    console.log("success!" + req.isAuthenticated());
-    res.redirect('/');
+    // Successful authentication
+    res.render('index', { searchResults: null, location: "Where are you?", logged: true });
   });
   
 app.get('/logout', function(req, res){
