@@ -17,7 +17,7 @@ var users = require('./routes/users');
 
 // *** mongoose *** //
 var url = process.env.MONGOLAB_URI;
-mongoose.connect('mongodb://heroku_b0jrwff1:1rkuvop5kpimvvnpr1ckhpf4sl@ds153729.mlab.com:53729/heroku_b0jrwff1');
+mongoose.connect(url);
 
 // config Twitter auth
 passport.use(new TwitterStrategy({
@@ -54,15 +54,15 @@ app.use(session({
  saveUninitialized: true
 }));
 
-// passport.serializeUser(function(user, done) {
-//   done(null, user.id);
-// });
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
 
-// passport.deserializeUser(function(id, done) {
-//   User.findById(id, function(err, user) {
-//     done(err, user);
-//   });
-// });
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 app.use('/', index);
 app.use('/users', users);
@@ -74,8 +74,9 @@ app.get('/auth/twitter',
   passport.authenticate('twitter'),
   function(req, res){});
 app.get('/auth/twitter/callback',
-  passport.authenticate('twitter', { failureRedirect: '/' }),
+  passport.authenticate('twitter', { failureRedirect: '/users' }),
   function(req, res) {
+    console.log("success!");
     res.redirect('/');
   });
   
