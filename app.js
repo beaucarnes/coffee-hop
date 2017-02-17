@@ -17,7 +17,9 @@ var users = require('./routes/users');
 
 // *** mongoose *** //
 var url = process.env.MONGOLAB_URI;
-mongoose.connect(url);
+mongoose.connect('mongodb://heroku_b0jrwff1:1rkuvop5kpimvvnpr1ckhpf4sl@ds153729.mlab.com:53729/heroku_b0jrwff1');
+
+console.log(url)
 
 // config Twitter auth
 passport.use(new TwitterStrategy({
