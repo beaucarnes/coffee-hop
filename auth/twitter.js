@@ -3,7 +3,7 @@ var TwitterStrategy = require('passport-twitter').Strategy;
 
 var User = require('../models/user');
 var config = require('../_config');
-// var init = require('./init');
+var init = require('./init');
 
 passport.use(new TwitterStrategy({
  consumerKey: config.twitter.consumerKey,
@@ -38,7 +38,7 @@ passport.use(new TwitterStrategy({
 ));
 
 // serialize user into the session
-//init();
+init();
 // passport.serializeUser(function(user, done) {
 //  done(null, user.id);
 // });
