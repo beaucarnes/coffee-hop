@@ -42,15 +42,6 @@ app.use(session({
  saveUninitialized: true
 }));
 
-// passport.serializeUser(function(user, done) {
-//   done(null, user.id);
-// });
-
-// passport.deserializeUser(function(id, done) {
-//   User.findById(id, function(err, user) {
-//     done(err, user);
-//   });
-// });
 
 app.use('/', index);
 app.use('/users', users);
@@ -65,7 +56,7 @@ app.get('/auth/twitter/callback',
   passportTwitter.authenticate('twitter', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication
-    res.render('index', { searchResults: null, location: "Where are you?", logged: true });
+    res.render('index', { searchResults: null, location: "Where are you?", logged: true, name: req.user.name });
   });
   
 app.get('/logout', function(req, res){
