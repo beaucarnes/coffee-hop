@@ -14,11 +14,16 @@ var yelp = new Yelp({
 /* GET home page. */
 router.get('/', function(req, res, next) {
   
-  Poll.find({}, function(err, polls) {
-    res.render('index', { polls: polls, logged: loggedin });
-  });
-  console.log("getting home:" + req.isAuthenticated())
+  Visit.find({}, function(err, visits) {
+    
     var searchResults = [];
+    var visitCount = {};
+    var visiting = [];
+    visits.forEach(function(visit) {
+      visitCount[visit.placeID] = (visitCount[visit.placeID] || 0) + 1;
+      visiting.push((visit.personID == req.user.id) ? true : false);
+    });
+    
     if (req.query.location) {
       yelp.search({ term: 'coffee', location: req.query.location })
           .then(function (data) {
@@ -26,8 +31,10 @@ router.get('/', function(req, res, next) {
                 searchResults.push({"id": data.businesses[i].id,
                                     "name": data.businesses[i].name,
                                     "snippet": data.businesses[i].snippet_text,
-                                    "image_url": data.businesses[i].image_url
+                                    "image_url": data.businesses[i].image_url,
+                                    "count": visitCount[data.businesses[i].id]
                 })
+
             };
             
             res.render('index', { searchResults: searchResults, location: req.query.location, logged: req.isAuthenticated() });
@@ -38,7 +45,11 @@ router.get('/', function(req, res, next) {
           });
     } else {
       res.render('index', { searchResults: null, location: "Where are you?", logged: req.isAuthenticated() });
-    };
+    };    
+    
+  });
+
+
 
   
 });
