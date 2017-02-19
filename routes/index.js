@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var Visit = require('./models/visit');
+var Visit = require('../models/visit');
 var Yelp = require('yelp');
 
 var yelp = new Yelp({
