@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-
-// Request API access: http://www.yelp.com/developers/getting_started/api_access
+var mongoose = require('mongoose');
+var Visit = mongoose.model('visits');
 var Yelp = require('yelp');
 
 var yelp = new Yelp({
@@ -13,6 +13,10 @@ var yelp = new Yelp({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  
+  Poll.find({}, function(err, polls) {
+    res.render('index', { polls: polls, logged: loggedin });
+  });
   console.log("getting home:" + req.isAuthenticated())
     var searchResults = [];
     if (req.query.location) {

@@ -8,8 +8,9 @@ block content
         .panel.panel-default
           .panel.panel-body
             if logged
-              p Hello #{name}!
-              | a(href="/logout") Logout
+              p 
+                Hello #{name}! - 
+                | a(href="/logout") Logout
             else
               a(href="/auth/twitter") Login via Twitter
             p Find out what coffee shops are hopping today. RSVP for the shops you are going to and check to see how many other people are going.
@@ -23,5 +24,6 @@ block content
             .panel.panel-default
               .panel-heading
                 h3.panel-title #{result.name}
+                button(type='button' class='btn btn-info btn-lg' id=#{result.id})
               .panel-body
                 =result.snippet
