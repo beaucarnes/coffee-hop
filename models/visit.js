@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
-// create User Schema
+// create Visit Schema
 var Visit = new Schema({
  personID: String,
  placeID: String

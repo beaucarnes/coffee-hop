@@ -10,8 +10,6 @@ var passportTwitter = require('./auth/twitter');
 var config = require('./_config.js');
 var TwitterStrategy = require('passport-twitter').Strategy;
 var mongoose = require('mongoose');
-var User = require('./models/user');
-
 
 
 var index = require('./routes/index');
