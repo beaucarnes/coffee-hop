@@ -10,3 +10,4 @@ https://www.yelp.com/developers/api_console
 https://github.com/olalonde/node-yelp
 
 http://mherman.org/blog/2013/11/10/social-authentication-with-passport-dot-js/#.WKGJQxIrLMU
+http://mherman.org/blog/2015/09/26/social-authentication-in-node-dot-js-with-passport/

@@ -14,6 +14,7 @@ var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var updatecount = require('./routes/updatecount');
 
 // *** mongoose *** //
 var url = process.env.MONGODB_URI;
