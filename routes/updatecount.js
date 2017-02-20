@@ -9,6 +9,7 @@ router.post('/', function(req, res, next) {
   var personID = "test" //req.user.someID
   console.log("getting updatecount page")
   console.log(req.body)
+  console.log(JSON.stringify(req))
   Visit.findOne({placeID : placeID, personID : personID}, function(err, visit)  {
     if (visit) {
       Visit.findOneAndRemove({placeID : placeID, personID : personID}, function (err, item) {  
