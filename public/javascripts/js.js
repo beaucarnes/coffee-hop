@@ -7,6 +7,7 @@ function updateCount(placeID) {
      document.getElementById(placeID).innerHTML = this.responseText;
     }
   };
+  xhttp.setRequestHeader('Content-Type', 'application.json')
   xhttp.open('POST', '/updatecount', true);
   xhttp.send('id='+placeID);
 }
