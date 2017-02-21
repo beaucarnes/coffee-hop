@@ -21,7 +21,9 @@ router.get('/', function(req, res, next) {
     var visiting = [];
     visits.forEach(function(visit) {
       visitCount[visit.placeID] = (visitCount[visit.placeID] || 0) + 1;
-      visiting.push((visit.personID == req.user.someID) ? true : false);
+      if (req.isAuthenticated()) {
+        visiting.push((visit.personID == req.user.someID) ? true : false);
+      }
     });
     
     if (req.query.location) {
