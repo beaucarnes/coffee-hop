@@ -8,13 +8,17 @@ router.get('/', function(req, res, next) {
   var placeID = req.query.id;
   console.log("getting request updatecount")
   Visit.findOne({placeID : placeID, personID : req.user.someID}, function(err, visit)  {
+    console.log("!!!!!!!!!!!! 1")
     if (visit) {
       Visit.findOneAndRemove({placeID : placeID, personID : req.user.someID}, function (err, item) {  
+         console.log("!!!!!!!!!!!! 2")
         res.send('removed');
       });
     } else {
+       console.log("!!!!!!!!!!!! 3")
       new Visit({placeID : placeID, personID : req.user.someID})
         .save(function(err, visit) {
+           console.log("!!!!!!!!!!!! 4")
           res.send('changed');
         });
     }
