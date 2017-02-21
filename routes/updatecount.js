@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
   Visit.findOne({placeID : placeID, personID : userID}, function(err, visit)  {
     if (visit) {
       Visit.findOneAndRemove({placeID : placeID, personID : userID}, function (err, item) {  
-        res.send("" + --count));
+        res.send("" + --count);
       });
     } else {
       new Visit({placeID : placeID, personID : userID})
