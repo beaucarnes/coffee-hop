@@ -44,6 +44,7 @@ app.use(session({
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/updatecount', updatecount);
 
 app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user });
