@@ -8,6 +8,6 @@ function updateCount(placeID) {
     }
   };
   
-  xhttp.open('GET', '/updatecount?id=" + placeID', true);
+  xhttp.open('GET', '/updatecount?id=' + placeID, true);
   xhttp.send(null);
 }
