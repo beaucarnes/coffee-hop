@@ -8,8 +8,6 @@ function updateCount(placeID) {
     }
   };
   
-  xhttp.open('POST', '/updatecount', true);
-  xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  //xhttp.setRequestHeader('Content-Type', 'application/json')
-  xhttp.send('id='+placeID);
+  xhttp.open('GET', '/updatecount?id=" + placeID', true);
+  xhttp.send(null);
 }
