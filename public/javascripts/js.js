@@ -3,6 +3,7 @@ function updateCount(placeID) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     console.log("request sent")
+    console.log(this.responseText)
     if (this.readyState == 4 && this.status == 200) {
      document.getElementById(placeID).innerHTML = this.responseText;
     }

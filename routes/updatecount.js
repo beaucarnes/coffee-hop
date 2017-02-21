@@ -6,7 +6,7 @@ var Visit = mongoose.model('visits');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   var placeID = req.query.id;
-  console.log("getting request updatecount")
+  console.log("getting request updatecount $$ "+placeID)
   Visit.findOne({placeID : placeID, personID : req.user.someID}, function(err, visit)  {
     console.log("!!!!!!!!!!!! 1")
     if (visit) {
