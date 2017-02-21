@@ -41,14 +41,14 @@ router.get('/', function(req, res, next) {
 
             };
             
-            res.render('index', { searchResults: searchResults, location: req.query.location, logged: req.isAuthenticated() });
+            res.render('index', { searchResults: searchResults, location: req.query.location, visitCount: visitCount, logged: req.isAuthenticated() });
           })
           .catch(function (err) {
             console.error(err);
             res.render('index', { searchResults: searchResults });
           });
     } else {
-      res.render('index', { searchResults: null, location: "Where are you?", logged: req.isAuthenticated() });
+      res.render('index', { searchResults: null, location: "Where are you?", visitCount: visitCount, logged: req.isAuthenticated() });
     };    
     
   });
