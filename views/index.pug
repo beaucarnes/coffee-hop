@@ -24,6 +24,6 @@ block content
             .panel.panel-default
               .panel-heading
                 h3.panel-title #{result.name}
-                button(type='button' class='btn btn-info btn-lg' id=result.id onclick='updateCount(this.id)')
+                button(type='button' class='btn btn-info btn-lg' id=result.id onclick='updateCount(#{result.id})')
               .panel-body
                 =result.snippet

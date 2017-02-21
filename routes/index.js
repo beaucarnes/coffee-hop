@@ -14,8 +14,6 @@ var yelp = new Yelp({
 /* GET home page. */
 router.get('/', function(req, res, next) {
   
-  var userID = "test" // req.user.someID;
-  
   Visit.find({}, function(err, visits) {
     
     var searchResults = [];
@@ -23,7 +21,7 @@ router.get('/', function(req, res, next) {
     var visiting = [];
     visits.forEach(function(visit) {
       visitCount[visit.placeID] = (visitCount[visit.placeID] || 0) + 1;
-      visiting.push((visit.personID == userID) ? true : false);
+      visiting.push((visit.personID == req.user.someID) ? true : false);
     });
     
     if (req.query.location) {

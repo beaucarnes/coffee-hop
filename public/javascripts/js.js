@@ -9,6 +9,6 @@ function updateCount(placeID) {
   };
   
   xhttp.open('POST', '/updatecount', true);
-  xhttp.setRequestHeader('Content-Type', 'application.json')
+  xhttp.setRequestHeader('Content-Type', 'application/json')
   xhttp.send('id='+placeID);
 }
