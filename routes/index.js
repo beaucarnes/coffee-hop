@@ -23,8 +23,9 @@ router.get('/', function(req, res, next) {
     var visiting = [];
     visits.forEach(function(visit) {
       visitCount[visit.placeID] = (visitCount[visit.placeID] || 0) + 1;
-      if (req.isAuthenticated()) {
-        visiting.push((visit.personID == userID) ? true : false);
+      // if (req.isAuthenticated() && visit.personID == userID) {
+      if (visit.personID == userID) {
+        visiting.push(visit.placeID);
       }
     });
     
@@ -36,7 +37,8 @@ router.get('/', function(req, res, next) {
                                     "name": data.businesses[i].name,
                                     "snippet": data.businesses[i].snippet_text,
                                     "image_url": data.businesses[i].image_url,
-                                    "count": visitCount[data.businesses[i].id]
+                                    "count": visitCount[data.businesses[i].id],
+                                    "visiting": (visiting.indexOf(data.businesses[i].id) > -1) ? true : false
                 })
 
             };
