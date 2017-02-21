@@ -16,13 +16,15 @@ router.get('/', function(req, res, next) {
   
   Visit.find({}, function(err, visits) {
     
+    var userID = "test" // req.user.someID
+    
     var searchResults = [];
     var visitCount = {};
     var visiting = [];
     visits.forEach(function(visit) {
       visitCount[visit.placeID] = (visitCount[visit.placeID] || 0) + 1;
       if (req.isAuthenticated()) {
-        visiting.push((visit.personID == req.user.someID) ? true : false);
+        visiting.push((visit.personID == userID) ? true : false);
       }
     });
     
