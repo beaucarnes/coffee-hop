@@ -38,7 +38,7 @@ router.get('/', function(req, res, next) {
                                     "snippet": data.businesses[i].snippet_text,
                                     "image_url": data.businesses[i].image_url,
                                     "count": visitCount[data.businesses[i].id],
-                                    "visiting": (visiting.indexOf(data.businesses[i].id) > -1) ? "info" : "success"
+                                    "visiting": (visiting.indexOf(data.businesses[i].id) > -1)
                 })
 
             };

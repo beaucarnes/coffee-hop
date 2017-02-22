@@ -24,7 +24,7 @@ block content
             .panel.panel-default
               .panel-heading
                 h3.panel-title #{result.name}
-                button(type='button' class='btn btn-lg btn-' + result.visiting id=result.id onclick='updateCount(this.id)') 
+                button(type='button' class='btn btn-lg btn-' + result.visiting?'success':'info' id=result.id onclick='updateCount(this.id, result.visiting)') 
                   =(visitCount[result.id] || 0)
               .panel-body
                 =result.snippet
