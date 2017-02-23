@@ -27,4 +27,8 @@ block content
                   =(visitCount[result.id] || 0) + ' going'
                 .clearfix
               .panel-body
-                =result.snippet
+                .row
+                  .col-sm-2
+                    img.img-responsive.img-thumbnail(src=result.image_url)
+                  .col-sm-9
+                    =result.snippet
