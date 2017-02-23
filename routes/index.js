@@ -17,10 +17,12 @@ router.get('/', function(req, res, next) {
   Visit.find({}, function(err, visits) {
     
     var userID = "";
+    var userName = "";
     
     if (req.isAuthenticated()) {
-      console.log("index"+req.user.someID)
-      userID = req.user.someID
+      console.log("index"+req.user.someID);
+      userID = req.user.someID;
+      userName = req.user.name;
     };
     
     var searchResults = [];
@@ -48,14 +50,14 @@ router.get('/', function(req, res, next) {
 
             };
             
-            res.render('index', { searchResults: searchResults, location: req.query.location, visitCount: visitCount, logged: req.isAuthenticated() });
+            res.render('index', { searchResults: searchResults, location: req.query.location, visitCount: visitCount, logged: req.isAuthenticated(), name: userName });
           })
           .catch(function (err) {
             console.error(err);
             res.render('index', { searchResults: searchResults });
           });
     } else {
-      res.render('index', { searchResults: null, location: "Where are you?", visitCount: visitCount, logged: req.isAuthenticated() });
+      res.render('index', { searchResults: null, location: "Where are you?", visitCount: visitCount, logged: req.isAuthenticated(), name: userName });
     };    
     
   });

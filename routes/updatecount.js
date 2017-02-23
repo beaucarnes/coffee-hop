@@ -29,12 +29,12 @@ router.get('/', isLoggedIn, function(req, res, next) {
   Visit.findOne({placeID : placeID, personID : userID}, function(err, visit)  {
     if (visit) {
       Visit.findOneAndRemove({placeID : placeID, personID : userID}, function (err, item) {  
-        res.send("" + --count);
+        res.send("" + --count + " going");
       });
     } else {
       new Visit({placeID : placeID, personID : userID})
         .save(function(err, visit) {
-          res.send("" + ++count);
+          res.send("" + ++count + " going (including YOU!)");
         });
     }
   });
