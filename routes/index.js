@@ -16,7 +16,9 @@ router.get('/', function(req, res, next) {
   
   Visit.find({}, function(err, visits) {
     
-    var userID = "test2" // req.user.someID
+    console.log("index"+req.user.someID)
+    
+    var userID = req.user.someID
     
     var searchResults = [];
     var visitCount = {};
