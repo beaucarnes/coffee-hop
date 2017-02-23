@@ -34,7 +34,7 @@ router.get('/', isLoggedIn, function(req, res, next) {
     } else {
       new Visit({placeID : placeID, personID : userID})
         .save(function(err, visit) {
-          res.send("" + ++count + " going (including YOU!)");
+          res.send("" + ++count + " going");
         });
     }
   });

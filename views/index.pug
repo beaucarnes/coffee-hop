@@ -9,8 +9,7 @@ block content
           .panel.panel-body
             if logged
               p 
-                Hello #{name}! - 
-                | a(href="/logout") Logout
+                Hello #{name}! - #[a( href='/logout' ) Logout]
             else
               a(href="/auth/twitter") Login via Twitter
             p Find out what coffee shops are hopping today. RSVP for the shops you are going to and check to see how many other people are going.
@@ -25,6 +24,6 @@ block content
               .panel-heading
                 h3.panel-title.pull-left #{result.name}
                 button(type='button' class=result.visiting ? 'btn btn-md btn-success pull-right' : 'btn btn-md btn-info pull-right' id=result.id onclick='updateCount(this.id)') 
-                  =(visitCount[result.id] || 0) + ' going' + result.visiting ? ' (including YOU!)':''
+                  =(visitCount[result.id] || 0) + ' going'
               .panel-body
                 =result.snippet
