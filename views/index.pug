@@ -25,5 +25,6 @@ block content
                 h3.panel-title.pull-left #{result.name}
                 button(type='button' class=result.visiting ? 'btn btn-md btn-success pull-right' : 'btn btn-md btn-info pull-right' id=result.id onclick='updateCount(this.id)') 
                   =(visitCount[result.id] || 0) + ' going'
+                .clearfix
               .panel-body
                 =result.snippet
