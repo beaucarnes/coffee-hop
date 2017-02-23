@@ -57,7 +57,9 @@ app.get('/auth/twitter/callback',
   passportTwitter.authenticate('twitter', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication
-    res.render('index', { searchResults: null, location: "Where are you?", logged: true, name: req.user.name });
+    res.redirect(req.session.returnTo || '/');
+    delete req.session.returnTo;
+    //res.render('index', { searchResults: null, location: "Where are you?", logged: true, name: req.user.name });
   });
   
 app.get('/logout', function(req, res){
