@@ -23,16 +23,18 @@ mongoose.connect(url);
 var app = express();
 
 app.use(session({
-  secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true
+ secret: 'keyboard cat',
+ resave: true,
+ saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
