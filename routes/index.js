@@ -13,7 +13,7 @@ var yelp = new Yelp({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  req.session.returnTo = req.path;
+  req.session.returnTo = req.path+'?location='+req.query.location;
   console.log(req.session.returnTo)
   Visit.find({}, function(err, visits) {
     
