@@ -6,7 +6,9 @@ var Visit = mongoose.model('visits');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   var placeID = req.query.id;
-  var userID = "test2" // req.user.someID
+  var userID = req.user.someID
+  console.log("updatecount"+req.user.someID)
+
   var count;
   
   Visit.find({placeID : placeID}, function(err, results) {
