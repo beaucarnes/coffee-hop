@@ -16,9 +16,12 @@ router.get('/', function(req, res, next) {
   
   Visit.find({}, function(err, visits) {
     
-    console.log("index"+req.user.someID)
+    var userID = "";
     
-    var userID = req.user.someID
+    if (req.isAuthenticated()) {
+      console.log("index"+req.user.someID)
+      userID = req.user.someID
+    };
     
     var searchResults = [];
     var visitCount = {};

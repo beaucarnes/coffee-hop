@@ -3,9 +3,17 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Visit = mongoose.model('visits');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
+function isLoggedIn (req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
+	} else {
+		res.redirect('/auth/twitter');
+	}
+}
+
+router.get('/', isLoggedIn, function(req, res, next) {
   var placeID = req.query.id;
+  
   var userID = req.user.someID
   console.log("updatecount"+req.user.someID)
 
